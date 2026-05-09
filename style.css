@@ -1,0 +1,388 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1F1D1D;
+}
+
+/* CONTENEDOR GENERAL */
+.page-container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ------------------ GENERAL ------------------ */
+
+.separador {
+    display: flex;
+    justify-content: center;
+}
+
+main h1 {
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin: 25px 0;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+/* ------------------ HEADER ------------------ */
+
+.palace-header { 
+    justify-content: center; 
+    background-color: #5A1F1F; 
+    color: white; 
+    padding: 20px; 
+    display: flex; 
+    align-items: first baseline; }
+
+a { color: white; 
+    text-decoration: none; 
+    margin: 20px; }
+
+ /* buscador */ 
+.palace-search { 
+    display: flex; 
+    align-items: center; 
+    position: relative; 
+    margin: 20px; 
+} 
+    
+nav { 
+        display: flex; 
+        gap: 15px; 
+    } 
+
+nav a { display: flex;
+align-items: center; 
+gap: 5px; 
+text-decoration: none; 
+color: white; 
+} 
+
+nav a img { 
+width: 20px; height: 20px; 
+} 
+#search-btn { width: 450px; 
+height: 30px; 
+border-radius: 20px; 
+padding: 5px 30px ; 
+}
+
+/* ------------------ BUSCADOR ------------------ */
+
+.palace-search {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#search-btn {
+    width: 450px;
+    height: 40px;
+
+    border-radius: 20px;
+    border: none;
+
+    padding: 5px 20px;
+}
+
+/* ------------------ SLIDER ------------------ */
+
+.slider-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.container-slider {
+    
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+
+    padding: 20px 10px;
+    display: flex;
+
+    margin: 20px 0;
+
+    scroll-behavior: smooth;
+    transition: transform 0.5s ease;
+}
+
+.cards-slider {
+    
+    width: 350px;
+    min-width: 350px;
+
+    flex-shrink: 0;
+
+    background-color: #0F0F0F;
+    padding: 18px;
+    border-radius: 12px;
+}
+
+.slider-img {
+    width: 100%;
+    height: 280px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+}
+
+.cards-slider h2 {
+    color: white;
+    margin: 16px 0 10px;
+    padding: 2px 16px;
+}
+
+.cards-slider h3 {
+    color: #A68A48;
+    margin: 10px 0;
+    padding: 1px 16px;
+    text-decoration: underline;
+}
+
+.btns-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.carrito-btn {
+    color: white;
+    background-color: #A68A48;
+
+    padding: 10px 30px;
+
+    border-radius: 20px;
+    border: none;
+
+    cursor: pointer;
+}
+
+.favorito-btn {
+    color: white;
+    background-color: #5A1F1F;
+
+    padding: 10px 30px;
+
+    border-radius: 20px;
+    border: none;
+
+    cursor: pointer;
+}
+
+/* BOTONES DEL SLIDER */
+
+.prev,
+.next {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    z-index: 10;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+/* ------------------ INGRESOS ------------------ */
+
+.ingr-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 30px;
+
+    justify-items: center;
+    margin-bottom: 50px;
+}
+
+.ingresos-section {
+    display: flex;
+    gap: 20px;
+
+    background: #111;
+
+    padding: 15px;
+    border-radius: 10px;
+
+    width: 100%;
+    max-width: 550px;
+}
+
+.box {
+    width: 140px;
+    height: 140px;
+
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.contenido-card-ingr {
+    color: white;
+}
+
+.contenido-card-ingr h3 {
+    color: #A68A48;
+    text-decoration: underline;
+}
+
+.ingresos-btn {
+    margin-top: 50px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ingresos-btn p {
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.carrito-ingr,
+.favorito-ingr {
+    color: white;
+
+    padding: 10px;
+
+    border-radius: 20px;
+    border: none;
+
+    cursor: pointer;
+}
+
+.carrito-ingr {
+    background-color: #A68A48;
+}
+
+.favorito-ingr {
+    background-color: #5A1F1F;
+}
+
+/* ------------------ BOXES ------------------ */
+
+.container-boxes {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+    justify-items: center;
+
+    margin-top: 20px;
+}
+
+.container-boxes h4,
+.container-boxes ul {
+    color: white;
+
+    margin: 16px 0 10px;
+    padding: 2px 16px;
+}
+
+/* ------------------ BOTÓN MÁS ------------------ */
+
+.mas {
+    margin: 30px 0;
+
+    display: flex;
+    justify-content: center;
+}
+
+.mas button {
+    color: white;
+    background-color: #A68A48;
+
+    font-size: 20px;
+
+    padding: 10px 20px;
+
+    border-radius: 20px;
+    border: none;
+
+    cursor: pointer;
+}
+
+/* ------------------ FOOTER ------------------ */
+
+.footer {
+    background-color: #5A1F1F;
+    color: white;
+
+    padding: 30px;
+
+    margin-top: 40px;
+
+    border-radius: 12px 12px 0 0;
+}
+
+.footer-top {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.footer-column h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.footer-column p {
+    margin: 4px 0;
+    font-size: 16px;
+}
+
+.footer hr {
+    margin: 15px 0;
+    border: 1px solid rgba(255,255,255,0.4);
+}
+
+.footer-middle h1 {
+    font-size: 45px;
+    font-weight: normal;
+
+    line-height: 1;
+}
+
+.footer-middle p {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+}
