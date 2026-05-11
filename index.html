@@ -3,25 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Palacio de tinta</title>
+    <title>Palacio De tinta</title>
     <link rel="stylesheet" href="style.css">
-    <script src="app.js"></script>
-    <script src="slider.js" defer></script>
+    
 </head>
 <body>
+    <div id="app">
+
         <header>
                 <div class="palace-header">
-                    <h1>Palacio de tinta</h1>
+                    <h1>Palacio De Tinta</h1>
 
                     <div class="palace-search">
                         <input id="search-btn" type="text" placeholder="Buscar caja literaría">
                     </div>
                     <nav>
                     <a href="#"> <img src="icons/corazon.png" alt="favoritos">Favoritos</a>
-                    <a href="#"> <img src="icons/bolsa-de-la-compra.png" alt="carrito">Carrito</a>
-                    <a href="#">Categorias</a>
-                    <a href="#">Suscripción</a>
-                    <a href="#">Iniciar sesion</a>
+
+                    <a href="#" @click.prevent="mostrarCarrito=!mostrarCarrito"> 
+                    <img src="icons/bolsa-de-la-compra.png" alt="carrito">Carrito {{ carrito.length }} </a>
+
+                    <a href="#"> <img src="icons/categoria.png" alt="categoria">Categorias</a>
+                    <a href="#"> <img src="icons/freemium.png" alt="suscripción">Suscripción</a>
+                    <a href="#"><img src="icons/cierre-de-sesion-de-usuario.png" alt="sesion">Iniciar sesion</a>
 
                     </nav>
                 </div>
@@ -38,76 +42,28 @@
             
         <section class="slider-section">
 
-            <!-- <div class="slider-wrapper"> -->
-                <!-- <button class="prev">◀</button> -->
+
 
             <div class="container-slider ">
 
-                <div class="cards-slider ">
-                    <img class="slider-img" src="images/narnia.png" alt="narnia-libro">
+                <div class="cards-slider" v-for = "libro in libros">
+                     <img class="slider-img" :src="libro.imagen">
 
-                    <h2>Narnia - El leon la bruja y el ropero</h2>
-                    <h3>Cs.lewis</h3>
+                    <h2>{{ libro.titulo }}</h2>
+                    <h3>{{ libro.autor }}</h3>
 
                     <div class="btns-cards">
-                    <button class="carrito-btn">Añadir al carrito</button>
-                    <button class="favorito-btn">Favorito</button>
-                    </div>
-                </div>
+                    <button v-if="!libro.anadidoCarrito" class="carrito-ingr" @click="agregarCarrito(libro)">🛒Añadir al carrito</button>
+                    <button v-else class="carrito-ingr" @click="eliminarDelCarrito(libro)">✅Añadido</button>
 
-                <div class="cards-slider ">
-                    <img class="slider-img" src="images/narnia.png" alt="narnia-libro">
-                    <h2>Narnia - El leon la bruja y el ropero</h2>
-                    <h3>Cs.lewis</h3>
-                    <div class="btns-cards">
-                    <button class="carrito-btn">Añadir al carrito</button>
-                    <button class="favorito-btn">Favorito</button>
-                    </div>
-                </div>
-
-                <!-- <div class="cards-slider ">
-                    <img class="slider-img" src="images/narnia.png" alt="narnia-libro">
-                    <h2>Narnia - El leon la bruja y el ropero</h2>
-                    <h3>Cs.lewis</h3>
-                    <div class="btns-cards">
-                    <button class="carrito-btn">Añadir al carrito</button>
-                    <button class="favorito-btn">Favorito</button>
-                    </div>
-                </div>
-
-                <div class="cards-slider ">
-                    <img class="slider-img" src="images/narnia.png" alt="narnia-libro">
-                    <h2>Narnia - El leon la bruja y el ropero</h2>
-                    <h3>Cs.lewis</h3>
-                    <div class="btns-cards">
-                    <button class="carrito-btn">Añadir al carrito</button>
-                    <button class="favorito-btn">Favorito</button>
-                    </div>
-                </div>
-
-                <div class="cards-slider ">
-                    <img class="slider-img" src="images/narnia.png" alt="narnia-libro">
-                    <h2>Narnia - El leon la bruja y el ropero</h2>
-                    <h3>Cs.lewis</h3>
-                    <div class="btns-cards">
-                    <button class="carrito-btn">Añadir al carrito</button>
-                    <button class="favorito-btn">Favorito</button>
-                    </div>
-                </div> -->
-
-                <div class="cards-slider ">
-                    <img class="slider-img" src="images/narnia.png" alt="narnia-libro">
-                    <h2>Narnia - El leon la bruja y el ropero</h2>
-                    <h3>Cs.lewis</h3>
-                    <div class="btns-cards">
-                    <button class="carrito-btn">Añadir al carrito</button>
-                    <button class="favorito-btn">Favorito</button>
+                    
+                    <button v-if="!libro.esFavorito" class="favorito-btn" @click="agregarFavorito(libro)">🤍Favorito</button>
+                    <button v-else class="favorito-btn" @click="agregarFavorito(libro)">❤️Añadido</button>
                     </div>
                 </div>
 
             </div>
-            <!-- <button class="next">▶</button> -->
-        <!-- </div> -->
+
         </section>
 
         <div class="separador">
@@ -122,81 +78,26 @@
         <section class="ingr-section">
             
 
-        <div class="ingresos-section">
+        <div class="ingresos-section" v-for = "ingresos in boxes">
             
-            <img class="box" src="images/box1.png" alt="box-agatha-christie">
-            
-            <div class="ingresos-cards">
-                
-                <div class="contenido-card-ingr">
-                    <h2>Colección especial: Agatha Christie</h2>
-                    <h3>Agatha Christie</h3>
-                </div>
-
-                <div class="ingresos-btn">
-                    <p>$150.000</p>
-                    <button class="carrito-ingr">Añadir al carrito</button>
-                    <button class="favorito-ingr">Favorito</button>
-                </div>
-            </div>
-
-        </div>
-
-                <div class="ingresos-section">
-            
-            <img class="box" src="images/box1.png" alt="box-agatha-christie">
+            <img class="box" :src="ingresos.imagen" >
             
             <div class="ingresos-cards">
                 
                 <div class="contenido-card-ingr">
-                    <h2>Colección especial: Agatha Christie</h2>
-                    <h3>Agatha Christie</h3>
+                    <h2> {{ ingresos.titulo }} </h2>
+                    <h3> {{ ingresos.autor }} </h3>
                 </div>
 
                 <div class="ingresos-btn">
-                    <p>$150.000</p>
-                    <button class="carrito-ingr">Añadir al carrito</button>
-                    <button class="favorito-ingr">Favorito</button>
-                </div>
-            </div>
+                    <p> {{ ingresos.precio }}</p>
+                    <button v-if="!ingresos.anadidoCarrito" class="carrito-ingr" @click="agregarCarrito(ingresos)">🛒Añadir al carrito</button>
+                    <button v-else class="carrito-ingr" @click="eliminarDelCarrito(ingresos)">✅Añadido</button>
 
-        </div>
+                   
 
-                <div class="ingresos-section">
-            
-            <img class="box" src="images/box1.png" alt="box-agatha-christie">
-            
-            <div class="ingresos-cards">
-                
-                <div class="contenido-card-ingr">
-                    <h2>Colección especial: Agatha Christie</h2>
-                    <h3>Agatha Christie</h3>
-                </div>
-
-                <div class="ingresos-btn">
-                    <p>$150.000</p>
-                    <button class="carrito-ingr">Añadir al carrito</button>
-                    <button class="favorito-ingr">Favorito</button>
-                </div>
-            </div>
-
-        </div>
-
-                <div class="ingresos-section">
-            
-            <img class="box" src="images/box1.png" alt="box-agatha-christie">
-            
-            <div class="ingresos-cards">
-                
-                <div class="contenido-card-ingr">
-                    <h2>Colección especial: Agatha Christie</h2>
-                    <h3>Agatha Christie</h3>
-                </div>
-
-                <div class="ingresos-btn">
-                    <p>$150.000</p>
-                    <button class="carrito-ingr">Añadir al carrito</button>
-                    <button class="favorito-ingr">Favorito</button>
+                    <button v-if="!ingresos.esFavorito" class="favorito-btn" @click="agregarFavorito(ingresos)">🤍Favorito</button>
+                    <button v-else class="favorito-btn" @click="agregarFavorito(ingresos)">❤️Añadido</button>
                 </div>
             </div>
 
@@ -213,133 +114,70 @@
 
         <section class="cajas-literarias">
             
+            <!-- COMPONENTE DE LA CARD -->
 
             <div class="container-boxes ">
 
-            <div class="cards-slider ">
-                <img class="slider-img" src="images/box1.png" alt="narnia-libro">
+                <card-box class="cards-slider" v-for="tematicas in boxes" :box="tematicas">
+                </card-box>
 
-                 <h2>Caja tematica: Nombre producto</h2>
-                <h3>Autor</h3>
-                <h4>Contiene:</h4>
-                <ul>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
+
+                <!-- CARD VIEJA -->
+
+            <!-- <div class="cards-slider " v-for=" tematicas in boxes">
+                <img class="slider-img" :src="tematicas.imagen" >
+
+                 <h2> {{ tematicas.titulo }}</h2>
+                <h3> {{ tematicas.autor }}</h3>
+                <button class="detalles-btn" @click="tematicas.mostrarDetalles = !tematicas.mostrarDetalles"> Ver contenido</button>
+                <ul v-if="tematicas.mostrarDetalles">
+                    <li v-for="item in tematicas.contenido">
+                        {{ item }}
+                    </li>
+
                 </ul>
 
                 <div class="btns-cards">
-                    <button class="carrito-btn">Añadir al carrito</button>
-                    <button class="favorito-btn">Favorito</button>
-                    </div>
+                    <button class="carrito-btn" @click="agregarCarrito(tematicas)">Añadir al carrito</button>
+
+                    <button v-if="!tematicas.esFavorito" class="favorito-btn" @click="agregarFavorito(tematicas)">🤍Favorito</button>
+                    
+                    <button v-else class="favorito-btn" @click="agregarFavorito(tematicas)">❤️Añadido</button>
                 </div>
-
-                        <div class="cards-slider ">
-                <img class="slider-img" src="images/box1.png" alt="narnia-libro">
-
-                 <h2>Caja tematica: Nombre producto</h2>
-                <h3>Autor</h3>
-                <h4>Contiene:</h4>
-                <ul>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                </ul>
-
-                <div class="btns-cards">
-                    <button class="carrito-btn">Añadir al carrito</button>
-                    <button class="favorito-btn">Favorito</button>
-                    </div>
+                </div> -->
                 </div>
-
-                            <div class="cards-slider ">
-                <img class="slider-img" src="images/box1.png" alt="narnia-libro">
-
-                 <h2>Caja tematica: Nombre producto</h2>
-                <h3>Autor</h3>
-                <h4>Contiene:</h4>
-                <ul>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                </ul>
-
-                <div class="btns-cards">
-                    <button class="carrito-btn">Añadir al carrito</button>
-                    <button class="favorito-btn">Favorito</button>
-                    </div>
-                </div>
-
-                            <div class="cards-slider ">
-                <img class="slider-img" src="images/box1.png" alt="narnia-libro">
-
-                 <h2>Caja tematica: Nombre producto</h2>
-                <h3>Autor</h3>
-                <h4>Contiene:</h4>
-                <ul>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                </ul>
-
-                <div class="btns-cards">
-                    <button class="carrito-btn">Añadir al carrito</button>
-                    <button class="favorito-btn">Favorito</button>
-                    </div>
-                </div>
-
-                                            <div class="cards-slider ">
-                <img class="slider-img" src="images/box1.png" alt="narnia-libro">
-
-                 <h2>Caja tematica: Nombre producto</h2>
-                <h3>Autor</h3>
-                <h4>Contiene:</h4>
-                <ul>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                </ul>
-
-                <div class="btns-cards">
-                    <button class="carrito-btn">Añadir al carrito</button>
-                    <button class="favorito-btn">Favorito</button>
-                    </div>
-                </div>
-
-                                            <div class="cards-slider ">
-                <img class="slider-img" src="images/box1.png" alt="narnia-libro">
-
-                 <h2>Caja tematica: Nombre producto</h2>
-                <h3>Autor</h3>
-                <h4>Contiene:</h4>
-                <ul>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                    <li>Contenido</li>
-                </ul>
-
-                <div class="btns-cards">
-                    <button class="carrito-btn">Añadir al carrito</button>
-                    <button class="favorito-btn">Favorito</button>
-                    </div>
-                </div>
-
-                
-                
 
         </section>
+
+            <div class="separador">
+                <img src="icons/inferior.png" alt="separador">
+            </div>
+        <h1>Cajas por suscripción</h1>
+                    <div class="separador">
+                <img src="icons/separador.png" alt="separador">
+            </div>
+        
+
+        <section class="sub-section">
+
+            <div class="cards-slider " v-for="sub in boxesSub">
+                <img class="slider-img" :src="sub.imagen">
+
+                 <h2> {{ sub.titulo }}</h2>
+                <h3> {{ sub.precio }}</h3>
+
+                <div class="btns-cards">
+                    <button class="favorito-btn">{{ sub.condicion }}</button>
+                    </div>
+                </div>
+            
+        </section>
+
+            <div class="separador">
+                <img src="icons/inferior.png" alt="separador">
+            </div>
+
+
 
         <div class="mas">
             <button>Ver más</button>
@@ -347,7 +185,34 @@
         
     </main>
 
+    <div class="panel-carrito" v-show="mostrarCarrito">
+
+    <h2>Carrito</h2>
+
+    <div v-if="carrito.length === 0">
+
+        <p>El carrito está vacío</p>
+
+    </div>
+
+    <div
+    class="item-carrito"
+
+    v-for="item in carrito"> <img class="img-carrito" :src="item.imagen">
+        <h3>{{ item.titulo }}</h3>
+
+        <p>{{ item.precio }}</p>
+
+        <button @click="eliminarDelCarrito(item)"> Quitar</button>
+    </div>
+
+</div>
+
+
+
+
 <footer class="footer">
+
 
     <div class="footer-top">
 
@@ -382,6 +247,11 @@
     </div>
 
 </footer>
+</div>
+
+<script src="https://unpkg.com/vue@3"></script>
+<script src="app.js"></script>
+
 
 </body>
 </html>
