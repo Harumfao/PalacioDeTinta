@@ -1,5 +1,8 @@
 const app = Vue.createApp({
-
+    created(){
+        //console.log('Creacion de la instancia');
+        this.getProducts();
+    },
     data() {
         return {
 
@@ -174,6 +177,15 @@ const app = Vue.createApp({
 
 
         methods: {
+
+            async getProducts(){
+                //console.log('get products');
+                const res = await fetch('productos.php');
+                const products = await res.json();
+                //console.log(products);
+                this.libros = products;
+
+            },
 
         agregarFavorito(producto) {
 
