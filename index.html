@@ -6,6 +6,7 @@
     <title>Palacio De tinta</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="module" src="chatbotapi.js"></script>
     
 </head>
 <body>
@@ -122,30 +123,6 @@
                 <card-box class="cards-slider" v-for="tematicas in boxes" :box="tematicas">
                 </card-box>
 
-
-                <!-- CARD VIEJA -->
-
-            <!-- <div class="cards-slider " v-for=" tematicas in boxes">
-                <img class="slider-img" :src="tematicas.imagen" >
-
-                 <h2> {{ tematicas.titulo }}</h2>
-                <h3> {{ tematicas.autor }}</h3>
-                <button class="detalles-btn" @click="tematicas.mostrarDetalles = !tematicas.mostrarDetalles"> Ver contenido</button>
-                <ul v-if="tematicas.mostrarDetalles">
-                    <li v-for="item in tematicas.contenido">
-                        {{ item }}
-                    </li>
-
-                </ul>
-
-                <div class="btns-cards">
-                    <button class="carrito-btn" @click="agregarCarrito(tematicas)">Añadir al carrito</button>
-
-                    <button v-if="!tematicas.esFavorito" class="favorito-btn" @click="agregarFavorito(tematicas)">🤍Favorito</button>
-                    
-                    <button v-else class="favorito-btn" @click="agregarFavorito(tematicas)">❤️Añadido</button>
-                </div>
-                </div> -->
                 </div>
 
         </section>
@@ -206,7 +183,34 @@
 
         <button @click="eliminarDelCarrito(item)"> Quitar</button>
     </div>
+</div>
 
+                <!-- CHATBOT -->
+
+     <div class="chatbot-container">
+
+    <button id="btn-chat">
+        <img src="icons/msg.png" alt="mensaje">
+    </button>
+
+
+    <div class="chat-container">
+        <div class="head-bot">
+            <h1>Chatbot</h1>
+            <button id="close">X</button>
+        </div>
+
+        <div class="chat" id="chat"></div>
+
+        <div class="send-container">
+            <form>
+                <div class="btns-actions">
+                    <input type="text" id="user-ask" placeholder="Realiza una consulta...">
+                    <button id="send">➤</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 
@@ -250,7 +254,6 @@
 </footer>
 </div>
 
-<script src="https://unpkg.com/vue@3"></script>
 <script src="app.js"></script>
 
 
