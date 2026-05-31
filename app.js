@@ -11,6 +11,10 @@ if (navigator.serviceWorker) {
     });
 }
 
+window.addEventListener('appinstalled', (event) => {
+  console.log('¡PWA instalada con éxito directamente desde el navegador! 🎉');
+});
+
 const app = Vue.createApp({
     created(){
         //console.log('Creacion de la instancia');

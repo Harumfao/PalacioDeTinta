@@ -16,10 +16,12 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
     event.respondWith(
-        event.respondWith(networkFirst(event.request))
+        networkFirst(event.request)
     );
 });
 
+
+//Estrategia de caché, network first
 async function networkFirst(request) {
   const cache = await caches.open(CACHE_NAME);
 
