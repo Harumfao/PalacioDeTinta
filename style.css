@@ -488,3 +488,188 @@ card-box {
     width: 100%;
 }
 
+/* Chatbot */
+
+.chatbot-container {
+    position: fixed;
+
+    bottom: 20px;
+    right: 20px;
+
+    width: 350px;
+    height: 500px;
+
+    z-index: 2000;
+
+}
+
+img {
+    border-radius: 1%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+#btn-chat {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+
+    width: clamp(40px, 8vw, 55px);
+    height: clamp(40px, 8vw, 55px);
+
+    background-color: white;
+    border-radius: 50%;
+    border: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+#btn-chat img {
+    width: 60%;
+}
+
+
+
+
+/* ----------------------------------- */
+
+
+.chat-container {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+    flex-direction: column;
+
+    background-color: #1F1D1D;
+
+    border-radius: 1%;
+    overflow: hidden; 
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+
+}
+
+
+/* Header */
+.head-bot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #5A1F1F;
+    color: white;
+
+    height: 60px; 
+    flex-shrink: 0;
+    justify-content: space-between;
+}
+
+.head-bot h1 {
+    margin: 20px;
+}
+
+
+#close {
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
+    border: none;
+    color: #5A1F1F;
+
+    padding: 8px 12px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+
+.chat {
+    flex: 1; 
+    padding: 10px;
+    overflow-y: auto;
+    
+}
+
+.send-container {
+    background-color:#5A1F1F ;
+}
+
+
+.btns-actions {
+    display: flex;
+    align-items: center;
+    flex: 1; 
+
+    background-color: #ffffff;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 50px;
+
+}
+
+form {
+    display: flex;
+    width: 100%;
+}
+
+#user-ask {
+    flex: 1; 
+    border: none;
+    border-radius: 20px;
+    padding: 8px;
+}
+
+#send {
+    background-color: #5A1F1F;
+    color: #ffffff;
+
+    border-radius: 50px;
+
+    border: none;
+    padding: 9px 10px;
+    cursor: pointer;
+}
+
+.chat-container.abierto {
+    display: flex;
+}
+
+
+.chat {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Burbujas de texto */
+.message {
+    max-width: 70%;
+    padding: 8px 12px;
+    margin: 5px 0;
+    border-radius: 15px;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+/* Derecha */
+.user {
+    background-color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 0;
+}
+
+/* Izquierda */
+.bot {
+    background-color: white;
+    align-self: flex-start;
+    border-bottom-left-radius: 0;
+}
+
+
