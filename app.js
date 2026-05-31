@@ -11,9 +11,46 @@ if (navigator.serviceWorker) {
     });
 }
 
-window.addEventListener('appinstalled', (event) => {
-  console.log('¡PWA instalada con éxito directamente desde el navegador! 🎉');
+/* SECCIÓN CARTEL DE INSTALABLE
+
+//Guarda el evento de instalación nativo
+let eventoInstalacion;
+
+const botonAceptarInstalacion = document.getElementById('btn-aceptar-pwa');
+const botonCancelarInstalacion = document.getElementById('btn-cancelar-pwa');
+
+//Evento que avisa que la app es descargable
+window.addEventListener('beforeinstallprompt', (event) => {
+//Evitamos cartel nativo
+  event.preventDefault();
+  
+//Guardamos el evento
+  eventoInstalacion = event;
 });
+
+if (botonAceptarInstalacion) {
+  botonAceptarInstalacion.addEventListener('click', async () => {
+    if (!eventoInstalacion) return;
+
+    eventoInstalacion.prompt();
+    
+//Esperamos a ver si aceptó o canceló
+    const { outcome } = await eventoInstalacion.userChoice;
+    
+    if (outcome === 'accepted') {
+      console.log('Aceptó la instalación');
+    } else {
+      console.log('Canceló la instalación');
+      eventoInstalacion = null;
+    }
+  });
+}
+
+if (botonCancelarInstalacion) {
+  botonCancelarInstalacion.addEventListener('click', () => {
+    eventoInstalacion = null;
+  });
+} */
 
 const app = Vue.createApp({
     created(){
