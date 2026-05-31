@@ -1,8 +1,8 @@
-if ('serviceWorker' in navigation) {
+if (navigator.serviceWorker) {
     window.addEventListener('load', async () => {
         try {
             const registration = await navigator.serviceWorker.register('/sw.js',{
-                scope: 'appV0.1',
+                scope: '/',
             });
             console.log ('SW registrado: ', registration.scope);
             } catch (error){
