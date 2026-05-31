@@ -1,3 +1,16 @@
+if ('serviceWorker' in navigation) {
+    window.addEventListener('load', async () => {
+        try {
+            const registration = await navigator.serviceWorker.register('/sw.js',{
+                scope: 'appV0.1',
+            });
+            console.log ('SW registrado: ', registration.scope);
+            } catch (error){
+                console.error('Error al registrar SW', error);
+            }
+    });
+}
+
 const app = Vue.createApp({
     created(){
         //console.log('Creacion de la instancia');
