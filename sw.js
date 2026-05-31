@@ -1,5 +1,5 @@
 const CACHE_NAME = 'PalacioDeTintaV0.1';
-const ASSETS_TO_CACHE = [ '/icons/bolsa-de-la-compra.png', '/icons/busqueda.png', '/icons/categoria.png', '/icons/cierre-de-sesion-de-usuario copy.png', '/icons/cierre-de-sesion-de-usuario.png', '/icons/corazon.png', '/icons/freemium.png', '/icons/inferior.png', '/icons/menu-hamburguesa.png', '/icons/separador.png', '/images/box1.png', '/images/narnia.png', '/logo/PalacioTinta72.png', '/logo/PalacioTinta192.png', '/app.js', '/index.html', '/manifest .json', '/productos.php', '/slider.js', '/style.css'];
+const ASSETS_TO_CACHE = [ '/icons/bolsa-de-la-compra.png', '/icons/busqueda.png', '/icons/categoria.png', '/icons/cierre-de-sesion-de-usuario copy.png', '/icons/cierre-de-sesion-de-usuario.png', '/icons/corazon.png', '/icons/freemium.png', '/icons/inferior.png', '/icons/menu-hamburguesa.png', '/icons/separador.png', '/images/box1.png', '/images/narnia.png', '/logo/PalacioTinta72.png', '/logo/PalacioTinta192.png', '/screenshots/PalacioDeTintaScreenshot.png', '/app.js', '/index.html', '/manifest .json', '/productos.php', '/slider.js', '/style.css'];
 
 
 //Instalamos el SW y guardamos en el caché
