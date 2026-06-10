@@ -5,13 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Palacio De tinta</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="vue.global.js"></script>
     <script type="module" src="chatbotapi.js"></script>
-    <link rel="manifest" href="manifest .json">
+    <link rel="manifest" href="manifest.json">
     
 </head>
 <body>
     <div id="app">
+
+        <!-- Banner PWA Instalación (esquina inferior izquierda, ancho limitado) -->
+        <div id="pwa-install-banner" style="display:none;position:fixed;bottom:12px;left:12px;transform:none;max-width:360px;width:auto;background:#fff;padding:10px 12px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.12);display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:1000;">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <img src="logo/PalacioTinta72.png" alt="icon" style="width:34px;height:34px;border-radius:6px;object-fit:cover;">
+                <div>
+                    <strong style="font-size:15px;display:block;margin-bottom:2px;">Instala Palacio De Tinta</strong>
+                    <div style="font-size:12px;color:#555;">Añade la app a tu dispositivo para acceso rápido.</div>
+                </div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+                <button id="btn-cancelar-pwa" style="background:transparent;border:0;color:#555;padding:6px 10px;border-radius:6px;font-size:13px;">Cerrar</button>
+                <button id="btn-aceptar-pwa" style="background:#5A1F1F;color:#fff;border:0;padding:7px 12px;border-radius:6px;font-size:14px;">Instalar</button>
+            </div>
+        </div>
 
         <header>
                 <div class="palace-header">
