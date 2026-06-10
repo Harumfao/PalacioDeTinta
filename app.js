@@ -2,7 +2,7 @@
 if (navigator.serviceWorker) {
   window.addEventListener('load', async () => {
     try {
-      const registration = await navigator.serviceWorker.register('/PalacioDeTinta/sw.js', { scope: '/PalacioDeTinta' });
+      const registration = await navigator.serviceWorker.register('/sw.js', { scope: '/' });
       console.log('SW registrado: ', registration.scope);
     } catch (error) {
       console.error('Error al registrar SW', error);
