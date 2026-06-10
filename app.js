@@ -2,7 +2,7 @@
 if (navigator.serviceWorker) {
   window.addEventListener('load', async () => {
     try {
-      const registration = await navigator.serviceWorker.register('/sw.js', { scope: '/' });
+      const registration = await navigator.serviceWorker.register('./sw.js', { scope: './' });
       console.log('SW registrado: ', registration.scope);
     } catch (error) {
       console.error('Error al registrar SW', error);
@@ -79,71 +79,73 @@ async function checkInstallability() {
 // Al recibir beforeinstallprompt guardamos el evento y mostramos el banner
 window.addEventListener('beforeinstallprompt', (event) => {
     console.log("beforeinstallprompt capturado");
-  event.preventDefault();
-  eventoInstalacion = event;
-  const banner = document.getElementById('pwa-install-banner');
-  if (banner) banner.style.display = 'flex';
-  console.log('beforeinstallprompt recibido — mostrando banner');
+    event.preventDefault();
+    eventoInstalacion = event;
+    const banner = document.getElementById('pwa-install-banner');
+    if (banner) banner.style.display = 'flex';
+    console.log('beforeinstallprompt recibido — mostrando banner');
+    
+    // Bindear los botones ahora que tenemos el evento
+    setupInstallButtons();
 });
 
-// Bind de botones cuando el DOM está listo
-window.addEventListener('load', () => {
+function setupInstallButtons() {
   const botonAceptarInstalacion = document.getElementById('btn-aceptar-pwa');
   const botonCancelarInstalacion = document.getElementById('btn-cancelar-pwa');
 
-//   if (botonAceptarInstalacion) {
-//     botonAceptarInstalacion.addEventListener('click', async () => {
-//       if (!eventoInstalacion) {
-//         showTemporaryMessage('La instalación aún no está lista. Recarga e interactúa con la página.');
-//         return;
-//       }
+  if (botonAceptarInstalacion) {
+    botonAceptarInstalacion.addEventListener('click', async () => {
+      console.log('CLICK EN INSTALAR');
+      console.log('eventoInstalacion:', eventoInstalacion);
 
-//       // Mostrar prompt nativo
-//       eventoInstalacion.prompt();
+      if (!eventoInstalacion) {
+        console.log('NO HAY EVENTO');
+        showTemporaryMessage('Error: evento de instalación no disponible');
+        return;
+      }
 
-//       // Ocultar banner inmediatamente
-//       const banner = document.getElementById('pwa-install-banner');
-//       if (banner) banner.style.display = 'none';
+      console.log('VOY A EJECUTAR PROMPT');
 
-//       // Esperamos a ver si aceptó o canceló
-//       try {
-//         const choice = await eventoInstalacion.userChoice;
-//         const outcome = choice.outcome;
-//         if (outcome === 'accepted') {
-//           console.log('Aceptó la instalación');
-//           showTemporaryMessage('Instalación aceptada — por favor espera');
-//         } else {
-//           console.log('Canceló la instalación');
-//           showTemporaryMessage('Instalación cancelada');
-//           eventoInstalacion = null;
-//         }
-//       } catch (e) {
-//         console.warn('No se pudo obtener el resultado de userChoice', e);
-//         eventoInstalacion = null;
-//       }
-//     });
-//   }
-if (botonAceptarInstalacion) {
-  botonAceptarInstalacion.addEventListener('click', async () => {
+      try {
+        eventoInstalacion.prompt();
 
-    console.log('CLICK EN INSTALAR');
-    console.log('eventoInstalacion:', eventoInstalacion);
+        const result = await eventoInstalacion.userChoice;
 
-    if (!eventoInstalacion) {
-      console.log('NO HAY EVENTO');
-      return;
-    }
+        console.log('RESULTADO:', result);
+        
+        if (result.outcome === 'accepted') {
+          console.log('Aceptó la instalación');
+          showTemporaryMessage('Instalación aceptada — por favor espera');
+        } else {
+          console.log('Canceló la instalación');
+          showTemporaryMessage('Instalación cancelada');
+        }
+        
+        eventoInstalacion = null;
+        const banner = document.getElementById('pwa-install-banner');
+        if (banner) banner.style.display = 'none';
+      } catch (e) {
+        console.error('Error al instalar:', e);
+        showTemporaryMessage('Error durante la instalación');
+      }
+    });
+  }
 
-    console.log('VOY A EJECUTAR PROMPT');
-
-    await eventoInstalacion.prompt();
-
-    const result = await eventoInstalacion.userChoice;
-
-    console.log('RESULTADO:', result);
-  });
+  if (botonCancelarInstalacion) {
+    botonCancelarInstalacion.addEventListener('click', () => {
+      eventoInstalacion = null;
+      const banner = document.getElementById('pwa-install-banner');
+      if (banner) banner.style.display = 'none';
+      showTemporaryMessage('Mensaje cerrado');
+    });
+  }
 }
 
+// Bind de botones cuando el DOM está listo (por si acaso)
+window.addEventListener('load', () => {
+  // Si beforeinstallprompt ya se capturó, setupInstallButtons ya se ejecutó
+  // Si no, lo hacemos aquí para que los botones estén listos
+  const botonCancelarInstalacion = document.getElementById('btn-cancelar-pwa');
   if (botonCancelarInstalacion) {
     botonCancelarInstalacion.addEventListener('click', () => {
       eventoInstalacion = null;
