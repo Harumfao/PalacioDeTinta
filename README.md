@@ -2,6 +2,15 @@
 
 Aplicación web tipo catálogo de libros y cajas literarias con componentes de carrito, favoritos y un chatbot interactivo.
 
+## Integrantes
+
+- Alejo ezequiel fernandez
+- Milagros abigail fernandez
+
+## GitHub Pages
+
+- https://harumfao.github.io/PalacioDeTinta/
+
 ## Descripción
 
 `Palacio De Tinta` es un proyecto web que simula una tienda de libros. Incluye:
